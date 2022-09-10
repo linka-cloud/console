@@ -1,6 +1,6 @@
 module go.linka.cloud/console
 
-go 1.19
+go 1.16
 
 require github.com/moby/term v0.0.0-20220808134915-39b0c02b01ae
 

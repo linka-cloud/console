@@ -23,7 +23,10 @@ import (
 	"github.com/moby/term"
 )
 
-var ErrNotAConsole = errors.New("provided file is not a console")
+var (
+	ErrNotAConsole = errors.New("provided file is not a console")
+	ErrUnsupported = errors.New("unsupported operation")
+)
 
 type File interface {
 	io.ReadWriteCloser
@@ -107,13 +110,6 @@ func (c *console) Fd() uintptr {
 
 func (c *console) Name() string {
 	return c.f.Name()
-}
-
-func (c *console) Resize(size WinSize) error {
-	return term.SetWinsize(c.f.Fd(), &term.Winsize{
-		Height: size.Height,
-		Width:  size.Width,
-	})
 }
 
 func (c *console) SetRaw() (err error) {
