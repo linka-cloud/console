@@ -64,7 +64,7 @@ func New(ctx context.Context) (Term, error) {
 	if err != nil {
 		return nil, err
 	}
-	if err := c.Resize(ws); err != nil {
+	if err := c.Resize(ws); err != nil && !errors.Is(err, console.ErrUnsupported) {
 		return nil, err
 	}
 
